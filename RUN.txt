@@ -1,0 +1,4 @@
+This script can be run using:
+
+watch -n 5 "ansible-pull -o -d /tmp/ansible-pull -U https://github.com/ivanbojer/ansible-pull.git"
+
