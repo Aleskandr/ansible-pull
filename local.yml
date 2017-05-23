@@ -31,7 +31,7 @@
   # permit ssh to 1.1.1.1
     - name: permit ssh to 1.1.1.1
       panos_security_rule:
-	operation: "update"
+        operation: "update"
         ip_address: "{{ mgmt_ip }}"
         password: "{{admin_password}}"
         rule_name: 'SSH permit'
@@ -51,7 +51,7 @@
   # permit ssh to 1.1.1.2
     - name: permit ssh to 1.1.1.2
       panos_security_rule:
-	operation: "delete"
+        operation: "delete"
         ip_address: "{{ mgmt_ip }}"
         password: "{{admin_password}}"
         rule_name: 'SSH permit-2'
