@@ -46,5 +46,4 @@
         service: ['application-default']
         hip_profiles: ['any']
         action: 'allow'
-        commit: false
 
