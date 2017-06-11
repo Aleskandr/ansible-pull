@@ -29,7 +29,7 @@
       no_log: 'yes'
 
   # permit ssh to 1.1.1.1
-      - name: create a global service for TCP 10000
+    - name: create a global service for TCP 10000
       panos_object:
         ip_address: "{{ mgmt_ip }}"
         password: "{{admin_password}}"
@@ -39,7 +39,7 @@
         protocol: 'tcp'
         description: 'http on 10000'
         commit: "False"
-   - name: Create NAT rule for Web server
+    - name: Create NAT rule for Web server
       panos_nat_rule:
         ip_address: "{{ mgmt_ip }}"
         password: "{{admin_password}}"
@@ -67,3 +67,4 @@
         destination_zone: ['trust']
         action: 'allow'
         commit: "True"
+
