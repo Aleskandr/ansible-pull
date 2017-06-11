@@ -56,7 +56,7 @@
         commit: "False"
     - name: add a rule to allow HTTP on custom port
       panos_security_rule:
-        ip_address: "{{ cloudformation.stack_outputs.FirewallManagementEIP }}"
+        ip_address: "{{ mgmt_ip }}"
         password: "{{admin_password}}"
         operation: 'update'
         rule_name: 'Web traffic'
