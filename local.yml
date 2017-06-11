@@ -29,21 +29,41 @@
       no_log: 'yes'
 
   # permit ssh to 1.1.1.1
-    - name: permit ssh to 1.1.1.1
-      panos_security_rule:
-        operation: "add"
+      - name: create a global service for TCP 10000
+      panos_object:
         ip_address: "{{ mgmt_ip }}"
         password: "{{admin_password}}"
-        rule_name: 'SSH permit'
-        description: 'SSH rule test'
+        operation: 'add'
+        serviceobject: 'service-http-10000'
+        destination_port: '10000'
+        protocol: 'tcp'
+        description: 'http on 10000'
+        commit: "False"
+   - name: Create NAT rule for Web server
+      panos_nat_rule:
+        ip_address: "{{ mgmt_ip }}"
+        password: "{{admin_password}}"
+        operation: 'update'
+        rule_name: "NATWeb"
+        source_zone: ["untrust"]
+        destination_zone: "untrust"
+        source_ip: ["any"]
+        destination_ip: ["10.0.0.100"]
+        service: "service-http-10000"
+        snat_type: "dynamic-ip-and-port"
+        snat_interface: "ethernet1/2"
+        dnat_address: "10.0.1.101"
+        dnat_port: "80"
+        commit: "False"
+    - name: add a rule to allow HTTP on custom port
+      panos_security_rule:
+        ip_address: "{{ cloudformation.stack_outputs.FirewallManagementEIP }}"
+        password: "{{admin_password}}"
+        operation: 'update'
+        rule_name: 'Web traffic'
+        service: 'service-http-10000'
+        description: 'Allow HTTP traffic on custom port'
         source_zone: ['untrust']
         destination_zone: ['trust']
-        source_ip: ['any']
-        source_user: ['any']
-        destination_ip: ['1.1.1.1']
-        category: ['any']
-        application: ['ssh']
-        service: ['application-default']
-        hip_profiles: ['any']
         action: 'allow'
-
+        commit: "True"
