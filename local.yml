@@ -38,7 +38,6 @@
         destination_port: '10000'
         protocol: 'tcp'
         description: 'http on 10000'
-        commit: "False"
     - name: Create NAT rule for Web server
       panos_nat_rule:
         ip_address: "{{ mgmt_ip }}"
