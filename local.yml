@@ -28,6 +28,16 @@
       include_vars: vars.yml  
       no_log: 'yes'
 
+    - name: create a global service for TCP 10000
+      panos_object:
+        ip_address: "{{ mgmt_ip }}"
+        password: "{{admin_password}}"
+        operation: 'add'
+        serviceobject: 'service-http-10000'
+        destination_port: '10000'
+        protocol: 'tcp'
+        description: 'http on 10000'
+
     - name: Create NAT rule for Web server
       panos_nat_rule:
         ip_address: "{{ mgmt_ip }}"
