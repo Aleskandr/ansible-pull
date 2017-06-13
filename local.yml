@@ -38,7 +38,7 @@
         destination_zone: "untrust"
         source_ip: ["any"]
         destination_ip: ["10.0.0.100"]
-        service: "service-http"
+        service: "service-http-10000"
         snat_type: "dynamic-ip-and-port"
         snat_interface: "ethernet1/2"
         dnat_address: "10.0.1.101"
@@ -50,7 +50,7 @@
         password: "{{admin_password}}"
         operation: 'update'
         rule_name: 'Web traffic'
-        service: 'service-http'
+        service: 'service-http-10000'
         description: 'Allow HTTP traffic on custom port'
         source_zone: ['untrust']
         destination_zone: ['trust']
