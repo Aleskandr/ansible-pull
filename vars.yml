@@ -1,4 +1,4 @@
 # vars.yml
-admin_username: "sshAdmin"
-admin_password: "sshAdmin"
-mgmt_ip: "172.25.79.29"
+admin_username: 'sshAdmin'
+admin_password: 'sshAdmin'
+mgmt_ip: '172.25.79.29'
